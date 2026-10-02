@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planificador de Limpieza</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <h1>Planificador de Limpieza</h1>
+      </header>
+
+      <main class="layout">
+        <section class="panel people-panel" aria-labelledby="people-title">
+          <div class="panel-header">
+            <h2 id="people-title">Personas y asignación</h2>
+          </div>
+          <ul id="peopleList" class="people-list" aria-live="polite"></ul>
+        </section>
+
+        <section class="panel calendar-panel" aria-labelledby="calendar-title">
+          <div class="calendar-toolbar">
+            <button id="prevMonthBtn" type="button" aria-label="Mes anterior">←</button>
+            <h2 id="calendar-title">Calendario</h2>
+            <button id="nextMonthBtn" type="button" aria-label="Mes siguiente">→</button>
+          </div>
+
+          <div id="monthLabel" class="month-label" aria-live="polite"></div>
+
+          <div class="weekday-row" aria-hidden="true">
+            <span>Lun</span>
+            <span>Mar</span>
+            <span>Mié</span>
+            <span>Jue</span>
+            <span>Vie</span>
+            <span>Sáb</span>
+            <span>Dom</span>
+          </div>
+
+          <div id="calendarGrid" class="calendar-grid" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

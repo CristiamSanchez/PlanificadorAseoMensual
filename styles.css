@@ -1,0 +1,230 @@
+:root {
+  --bg: #0f172a;
+  --panel: #1f2937;
+  --panel-strong: #0b1220;
+  --text: #e5e7eb;
+  --muted: #a5b4cf;
+  --border: #334155;
+  --primary: #7dd3fc;
+  --primary-strong: #38bdf8;
+  --accent: #86efac;
+  --shadow: rgba(15, 23, 42, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, var(--bg) 0%, #111827 100%);
+  color: var(--text);
+}
+
+button,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+}
+
+.app-header {
+  margin-bottom: 22px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 2.4vw, 2.9rem);
+  letter-spacing: 0.03em;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 22px;
+}
+
+.panel {
+  background: rgba(31, 41, 55, 0.96);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 20px 32px var(--shadow);
+}
+
+.panel-header,
+.calendar-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-header h2,
+.calendar-toolbar h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.people-list {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.person-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.person-label {
+  font-weight: 700;
+  flex: 1;
+  color: var(--text);
+}
+
+.day-select {
+  width: 140px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 9px 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.day-select:focus,
+.calendar-toolbar button:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.day-select:hover {
+  border-color: var(--primary-strong);
+}
+
+.month-label {
+  margin: 18px 0 12px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: capitalize;
+}
+
+.calendar-toolbar button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-strong);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.calendar-toolbar button:hover {
+  background: rgba(125, 211, 252, 0.1);
+  transform: translateY(-1px);
+}
+
+.weekday-row,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.weekday-row {
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.weekday-row span,
+.day-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel-strong);
+}
+
+.day-cell {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 7px 6px;
+  font-size: 0.9rem;
+  color: var(--text);
+  min-height: 88px;
+}
+
+.day-cell.empty {
+  background: rgba(148, 163, 184, 0.05);
+  border-style: dashed;
+}
+
+.day-number {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 6px;
+  text-align: left;
+  color: var(--text);
+}
+
+.day-assignment {
+  display: block;
+  font-size: 0.73rem;
+  color: var(--accent);
+  text-align: left;
+  min-height: 1.2em;
+  line-height: 1.3;
+}
+
+.day-cell.is-today {
+  border-color: var(--primary-strong);
+  box-shadow: inset 0 0 0 1px var(--primary-strong);
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.08), rgba(15, 23, 42, 0.6));
+}
+
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .person-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .day-select {
+    width: 100%;
+  }
+
+  .day-cell {
+    min-height: 78px;
+  }
+}
