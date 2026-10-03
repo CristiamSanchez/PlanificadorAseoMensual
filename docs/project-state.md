@@ -1,41 +1,34 @@
 # Project State
 
 ## Current Phase
-Phase 4 — Final Review, Cleanup and Documentation
+Phase 6 — Fix Retention Semantics and Production Verification
 
 ## Status
-Phase 4 is complete. The application is functionally complete for its defined scope and ready for human review before GitHub publication.
+The local source now retains assignments by the real current calendar month and its immediately previous month, regardless of the displayed month. Phase 5 functionality remains in the local source.
 
 ## Completed
-- Reviewed the full implementation and removed an unused date helper and unused CSS variables.
-- Consolidated previous/next month transitions into one shared function.
-- Hardened storage normalization for malformed month entries, person records, duplicate weekday assignments, and invalid month/year values.
-- Kept the interface usable when browser storage writes are unavailable; assignments then remain only in the current page session.
-- Updated the README and reconciled requirements, architecture, domain, and decision documentation with the implementation.
-- Preserved the browser-only, framework-free design and added no application features.
+- Changed retention calculation to use the system date rather than displayed month or navigation history.
+- Preserved real current/previous assignment buckets while navigating several months backward or forward.
+- Out-of-window months render unassigned and are not persisted; the explicit save action explains when a viewed month is outside retention.
+- Preserved January/December year-boundary behavior.
+- Updated README and requirements, architecture, domain, decision, and project-state documentation.
 
 ## Current Work
-None. The requested final review is complete.
+None. Phase 6 local changes and verification are complete.
 
 ## Next Step
-No further phase is defined. Await human review and acceptance.
+Stop here as requested. Do not implement Phase 7.
 
 ## Known Limitations
-- Data is local to the browser and origin; it is not synchronized or backed up.
-- When browser storage is unavailable or full, the app continues to work for the current page session but cannot persist changes.
-- There is no automated test suite; final behavior was checked in the browser and with a temporary isolated harness.
+- Assignment and theme data remain local to the browser and origin; there is no synchronization or backup.
+- The live GitHub Pages site currently serves a version without the Phase 5 save, theme, and export controls. The Phase 6 retention fix and those controls therefore remain unverified on the deployed build until it is updated.
+- There is no persistent automated test suite.
 
 ## Verification
-- `node --check app.js`: passed.
-- VS Code diagnostics for `app.js`, `index.html`, and `styles.css`: no errors.
-- Browser verification passed 32 checks across 1280px, 360px, and 320px viewports.
-- Confirmed the page loads, displays the three people, and renders expected monthly day counts.
-- Confirmed assignment, reassignment, clearing, `Sin asignar`, refresh persistence, and separate month assignments.
-- Confirmed January/December navigation, leap and common February lengths, and current-plus-previous-month retention with older data cleanup.
-- Confirmed legacy data migration, invalid JSON recovery, malformed entry cleanup, duplicate weekday normalization, and invalid month/year fallback.
-- Confirmed dark theme and no horizontal overflow at tested viewports; no browser console or page errors occurred. Invalid JSON emits the handled load warning.
-- Restored the browser's original saved localStorage value after the verification run.
-
-## Important Notes
-- Assignments are retained only for the displayed month and the immediately previous month.
-- Run through a local static server; browser behavior for localStorage on `file:` URLs varies.
+- `node --check app.js`, workspace diagnostics, and `git diff --check`: passed.
+- Local static HTTP browser verification passed 22 retention/navigation checks and 10 Phase 5 theme/export checks, with no browser errors.
+- Confirmed October/September assignments remain stored when July or other out-of-window months are displayed; older keys are pruned.
+- Confirmed current and previous assignments save, survive refresh, and restore after navigation; out-of-window months remain unassigned and are not recreated.
+- Confirmed Jan/Dec retention keys, theme persistence, and a valid 1080 by 1180 PNG with calendar content, assignment legend, and no application controls.
+- Tested the live GitHub Pages URL directly: page, three people, JavaScript, CSS, localStorage, assignment persistence, and month navigation work without console errors. The live site lacks Phase 5 controls, so Phase 5/6 production behavior was not claimed as verified.
+- Restored original localStorage values after browser tests and stopped the temporary static server.

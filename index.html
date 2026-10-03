@@ -10,7 +10,17 @@
     <div class="app-shell">
       <header class="app-header">
         <h1>Planificador de Limpieza</h1>
+        <div class="app-controls" aria-label="Acciones del calendario">
+          <button id="saveMonthBtn" class="app-control-button" type="button">Guardar mes</button>
+          <button id="downloadCalendarBtn" class="app-control-button" type="button">Descargar calendario</button>
+          <button id="themeToggleBtn" class="app-control-button" type="button" aria-pressed="false">Tema: Actual</button>
+        </div>
       </header>
+
+      <div class="app-feedback">
+        <p id="saveStatus" class="action-status" role="status" aria-live="polite" hidden></p>
+        <p id="exportStatus" class="action-status" role="status" aria-live="polite" hidden></p>
+      </div>
 
       <main class="layout">
         <section class="panel people-panel" aria-labelledby="people-title">

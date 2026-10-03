@@ -17,8 +17,11 @@ The application is intended for household members who need to manage and consult
 - FR-004: The calendar shall update when the user navigates to a different month.
 - FR-005: The application shall persist assignment data between browser sessions.
 - FR-006: The application shall display the cleaning assignment in the context of the month and day-of-week layout.
-- FR-007: The application shall use a dark visual theme.
-- FR-008: Assignments shall be stored by month and retained only for the current month and the immediately previous month.
+- FR-007: The application shall provide the original theme and a black/charcoal theme that can be switched without reloading.
+- FR-008: Assignments shall be stored independently by month; retain only the real current calendar month and its immediately previous month, regardless of the displayed month, and remove all other month entries.
+- FR-009: The application shall provide a "Guardar mes" action with visible save feedback for retained months while keeping normal automatic persistence and safe month navigation; out-of-window months shall not be persisted.
+- FR-010: The application shall download the displayed calendar as a PNG containing the title, month, weekday headers, dates, and assignment names without application controls.
+- FR-011: The selected theme shall persist independently from monthly assignment retention.
 
 ## Non-Functional Requirements
 - NFR-001 Usability: The interface must be readable and visually coherent, with sufficient styling to be pleasant to use.
@@ -33,8 +36,9 @@ The application is intended for household members who need to manage and consult
 - Three initial people and a cleaning-day assignment model
 - Monthly calendar display
 - Month navigation
-- Persistence in the browser
-- Dark theme styling
+- Automatic and explicit browser persistence
+- Monthly calendar PNG export
+- Switchable current and black/charcoal themes
 - Simple, small-scale implementation suitable for practice
 
 ### Out of Scope
@@ -42,8 +46,9 @@ The application is intended for household members who need to manage and consult
 - User accounts or authentication
 - Multi-user synchronization across devices
 - Automatic notifications or reminders
+- WhatsApp integration
 - Complex recurrence logic beyond a weekly household schedule
-- Advanced analytics, reporting, or export features
+- Export formats other than the monthly PNG image
 - External frameworks or libraries unless required by project constraints
 
 ## Requirements Status

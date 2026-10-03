@@ -1,11 +1,12 @@
 # Planificador de Limpieza
 
-A small household planner for Monica, Cristiam, and Enanillas-Cabezoncin. It assigns cleaning weekdays and displays the schedule on a monthly calendar.
+A small household planner for Monica, Cristiam, and Enanillas-Cabezoncin. It assigns cleaning weekdays, displays them on a monthly calendar, and can save or export the displayed month.
 
 ## Technologies
 
 - HTML, CSS, and plain JavaScript
 - Browser `localStorage` for persistence
+- Browser SVG and Canvas APIs for PNG export
 - No framework, package manager, backend, or database
 
 ## Run Locally
@@ -20,7 +21,9 @@ Open [http://localhost:8000](http://localhost:8000). No build or dependency inst
 
 ## Data and Retention
 
-Assignments are saved in this browser under `planificadorLimpiezaX3.state`, grouped by `YYYY-MM` month keys. The app retains the displayed month and the immediately previous month; older entries are removed when the app loads or the displayed month changes. Data stays in this browser and is not synchronized or backed up.
+Assignments are saved in this browser under `planificadorLimpiezaX3.state`, grouped by `YYYY-MM` month keys. Changes save automatically; **Guardar mes** also explicitly saves the displayed month and confirms the result. Retention is based on the real calendar date: only the real current month and immediately previous month are stored, regardless of which month is displayed. Other months display without assignments and are not persisted. Data stays in this browser and is not synchronized or backed up.
+
+Use **Descargar calendario** to download a 1080 × 1180 PNG of the displayed month. Dates use person initials with a full-name legend for phone-sized viewing. **Tema: Actual/Negro** switches between the original blue-gray theme and a black/charcoal theme; the preference is stored separately under `planificadorLimpiezaX3.theme`.
 
 ## Project Structure
 
